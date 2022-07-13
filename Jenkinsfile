@@ -19,7 +19,8 @@ pipeline{
         }
         stage('Build Tags'){
             when{
-                buildingTag()
+               // buildingTag()
+               tag "1.0"
             }
             steps{
                 echo 'Hello world tag'
