@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    environment{
+        name = "prod"
+    }
+
+    stages {
+        stage('Build') {
+            when {
+                equals( actual: name, expected: "prod")
+            }
+            steps {
+                echo "Deploy in ${name}"
+            }
+        }
+    }
+}
