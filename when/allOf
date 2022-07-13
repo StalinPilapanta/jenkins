@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    environment{
+        // all condition same equal in allOff 
+        //if not equal not enter to execution
+        version = "1.1"
+        some_name = "prod"
+    }
+    stages {
+        stage('Build') {
+            when{
+                allOf{
+                    environment name: "version", value: "1.0"
+                    environment name: "some_name", value: "prod"
+                }
+            }
+            steps {
+                echo "Build ${version}"
+                echo "Build ${some_name}"
+            }
+        }
+    }
+}

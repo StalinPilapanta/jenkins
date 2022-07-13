@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    environment{
+        // when use diferent pipeline execute 
+        // whe use same skip step
+        //name = "prod"
+        name = "test"
+    }
+
+    stages {
+        stage('Build') {
+            when {
+                not{
+                    equals( actual: name, expected: "test")
+                }
+            }
+            steps {
+                echo "Deploy in ${name}"
+            }
+        }
+    }
+}
