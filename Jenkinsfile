@@ -2,18 +2,12 @@ pipeline{
     agent any
     stages{
         stage('Build Main'){
-           //when{
-           //    branch 'main'
-           //}
-           //steps{
-           //    echo 'Build Main'
-           //}
            when{
-                buildingTag()
-            }
-            steps{
-                echo 'Hello world tag'
-            }
+               branch 'main'
+           }
+           steps{
+               echo 'Build Main'
+           }
         }
         stage('Build Dev'){
             when{
@@ -23,5 +17,14 @@ pipeline{
                 echo 'Build Dev'
             }
         }
+        stage('Build Tags'){
+            when{
+                buildingTag()
+            }
+            steps{
+                echo 'Hello world tag'
+            }
+        }
+
     }
 }
